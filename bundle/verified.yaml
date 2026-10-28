@@ -1,0 +1,448 @@
+schema_version: 1
+bundle_id: bundle.wave-accurate-timing-skill
+book:
+  title: 精准择时——波浪理论实战策略
+  author: 陈晓东
+  source_pack: 陈晓东精准择时_页面_001-423.png
+  baseline_tag: v1.0.0
+
+entry:
+  name: wave-accurate-timing-skill
+  description: >-
+    陈晓东《精准择时》波浪理论内部结构分析体系的单一入口。先定浪级与方向，再判「具备结构条件/结束信号」，
+    用逆势点、转势点、顺势点与多空分界点定位买卖点，按位置设止损、目标与主动/被动出局，并用多周期复核与
+    多标注应对处理不确定性。触发：用户问现在是什么级别、该不该买、回调到哪里买、止损放哪、目标多少、
+    什么时候走、这个低点能不能抄、多空分界点在哪、板块启动怎么选股、一点三级共振、多标注怎么下单，
+    或要求用波浪内部结构分析某只 A 股/指数/期货。不适用：纯基本面估值、消息面博弈、盘口高频、无 K 线数据品种。
+  core_principles:
+    - 先定级定方向，再谈买卖点：级别判错则止损、目标、仓位全错
+    - 「具备结构条件」不等于「结束信号」：前者只能主动出局/减仓，后者才能反向建仓
+    - 三类交易点严格区分：逆势点（调整极端分批）、转势点（结束信号确认）、顺势点（趋势确立后回调结束）
+    - 止损永远放本浪起点之外，目标放高一级结构条件处，主动/被动出局事先分设
+    - 位置决定策略：同一形态在不同位置，目标、止损、仓位全不同
+    - 多标注/多演变时不硬选边：等幅度大的结构具备条件、等验证、或降仓
+  out_of_scope:
+    - 纯基本面估值与财务分析
+    - 消息面、资金流、盘口与高频交易
+    - 无 K 线数据或流动性极差的品种
+    - 保证收益类承诺
+  stop_conditions:
+    - 多周期数据不足（无法定级）时停止，要求补数据
+    - 结构标注存在多解且无法比较幅度时，只观察不参与
+    - 关键点位无法确定（浪起点不明）时，不下单
+
+router_entry:
+  name: wave-accurate-timing-skill-router
+  description: >-
+    陈晓东《精准择时》体系入口（择时与买卖点）：定级定方向、结构条件与结束信号、调整形态词典、
+    逆势抓底与三类交易点、多空分界点、位置策略、顺势点、止损目标出局、短线买点、板块选股、
+    高胜率共振、多周期复核、多标注应对、走势预测。与同作者《精准数浪》技能区分：数浪入口解决
+    「浪怎么数、级别怎么标」，本入口解决「数完之后何时买、买多少、何时走」。不适用于纯基本面与消息面。
+promotion_budget: 8
+
+capabilities:
+  - capability_id: cap.wave-accurate-timing-skill.wave-degree-and-direction-skill
+    revision: 1
+    status: active
+    slug: wave-degree-and-direction-skill
+    title: 定级定方向
+    importance: critical
+    importance_rationale: 覆盖 task-01/task-02（critical）；所有择时动作的前置，级别判错则止损、目标全错；DIGEST 骨架第 1 论点
+    one_liner: 先定「现在在哪一级、往哪走」，再谈买卖点
+    intents:
+      - 判断当前浪级与趋势方向
+      - 确定该看哪个周期
+      - 用突破确立高一级趋势
+      - 锚定基础浪与细分浪
+    keywords: [浪级, 定级, 趋势方向, 基础浪, 细分浪, 递归, degree, trend direction, timeframe]
+    also_read: [position-decides-strategy, structure-condition-vs-end-signal-skill, multi-timeframe-crosscheck]
+    card: cards/wave-degree-and-direction-skill.md
+    frontmatter:
+      description: >-
+        当用户问「现在是什么级别、往哪走、该看哪个周期」，或需要判断周线/月线/年线趋势方向时使用。
+        用「次一级三浪上破本级别前高」确立高一级趋势，递归定级；不适用于只有单周期数据、纯基本面判断，
+        也不适用于单纯数浪（那属于同作者《精准数浪》技能）。
+      tags: [wave-theory-skill, trend, degree, decision]
+    source_evidence:
+      - source_id: src-main-book
+        location: 第一章 第一节；图 1-1；前言；特色术语
+    promotion:
+      destination: promoted
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+
+  - capability_id: cap.wave-accurate-timing-skill.structure-condition-vs-end-signal-skill
+    revision: 1
+    status: active
+    slug: structure-condition-vs-end-signal-skill
+    title: 结构条件与结束信号
+    importance: critical
+    importance_rationale: 覆盖 task-04（critical）；混淆二者是全书最常见亏法；DIGEST 骨架第 2 论点
+    one_liner: 「具备结构条件」不等于「结束」，两者必须分开
+    intents:
+      - 判断调整浪是否走完
+      - 区分结构条件与结束信号
+      - 判断能否抄底或反向建仓
+      - 处理结束点下移
+    keywords: [具备结构条件, 结束信号, 验证收住, 结束点下移, structure condition, end signal]
+    also_read: [wave-degree-and-direction-skill, countertrend-entry-and-trade-point-taxonomy-skill, stop-target-and-exit-skill]
+    card: cards/structure-condition-vs-end-signal-skill.md
+    frontmatter:
+      description: >-
+        当用户问「这段调整走完了吗、能不能抄底、是不是结束了」时使用。严格区分「具备结构条件」
+        （只能主动出局/减仓）与「结束信号」（上破前高并验证收住，才能反向建仓），并处理结束点随演变下移。
+        不适用于只有单周期数据；不适用于把形态完成直接当反转。
+      tags: [wave-theory-skill, structure, signal, risk]
+    source_evidence:
+      - source_id: src-main-book
+        location: 第一章 第二节；第二章 第二节；图 8-31
+    promotion:
+      destination: promoted
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+
+  - capability_id: cap.wave-accurate-timing-skill.correction-pattern-dictionary-skill
+    revision: 1
+    status: active
+    slug: correction-pattern-dictionary-skill
+    title: 调整形态词典
+    importance: critical
+    importance_rationale: 覆盖 task-03（critical）；全书形态词典，后续所有买卖点都挂在这张表上
+    one_liner: 剪刀/镰刀/双节棍三式＋四种特殊结构，各有预测与关键点
+    intents:
+      - 识别调整浪形态
+      - 判断调整会有多深
+      - 判断后续 C 浪强弱
+      - 区分剪刀/镰刀/双节棍
+    keywords: [剪刀式, 镰刀式, 双节棍式, 调整上倾, 反弹下倾, 三角形, 浪中浪, 不规则结构, pattern]
+    also_read: [structure-condition-vs-end-signal-skill, countertrend-entry-and-trade-point-taxonomy-skill, bull-bear-divide-and-relabeling-skill]
+    card: cards/correction-pattern-dictionary-skill.md
+    frontmatter:
+      description: >-
+        当用户问「这是什么调整结构、还会跌多深、是剪刀还是双节棍」时使用。按 {b} 浪分解次数区分
+        剪刀/镰刀/双节棍三式，并识别上倾/下倾/三角形/不规则四种特殊结构，给出预测与关键点。
+        不适用于未定级的形态识别；不适用于把「像某式」当「一定是某式」。
+      tags: [wave-theory-skill, pattern, correction, forecast]
+    source_evidence:
+      - source_id: src-main-book
+        location: 特色术语 1~9；图 5~23；第一章 第六节
+    promotion:
+      destination: promoted
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+
+  - capability_id: cap.wave-accurate-timing-skill.countertrend-entry-and-trade-point-taxonomy-skill
+    revision: 1
+    status: active
+    slug: countertrend-entry-and-trade-point-taxonomy-skill
+    title: 逆势抓底与三类交易点
+    importance: critical
+    importance_rationale: 覆盖 task-06/task-08（critical）；低吸买点核心，六类交易点分类器
+    one_liner: 逆势点、转势点、顺势点分清楚，各自止损不同
+    intents:
+      - 判断这个低点能不能抄
+      - 区分逆势点/转势点/顺势点
+      - 制定分批建仓计划
+      - 设定止损链
+    keywords: [逆势点, 转势点, 顺势点, 关键买点, 分批, countertrend, entry]
+    also_read: [structure-condition-vs-end-signal-skill, trend-following-entry-skill, stop-target-and-exit-skill]
+    card: cards/countertrend-entry-and-trade-point-taxonomy-skill.md
+    frontmatter:
+      description: >-
+        当用户问「这个低点能不能抄、逆势买还是顺势买、怎么分批」时使用。把买卖点拆成逆势点/转势点/
+        顺势点/主动出局/被动出局/技术止损六类，给出逆势抓底的分批计划与止损链。
+        不适用于大周期方向不明时重仓逆势；不适用于把「跌得多」当「到底了」。
+      tags: [wave-theory-skill, entry, countertrend, position]
+    source_evidence:
+      - source_id: src-main-book
+        location: 第一章 第六节；图 1-18~1-25
+    promotion:
+      destination: promoted
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+
+  - capability_id: cap.wave-accurate-timing-skill.bull-bear-divide-and-relabeling-skill
+    revision: 1
+    status: active
+    slug: bull-bear-divide-and-relabeling-skill
+    title: 多空分界点与上移下移
+    importance: high
+    importance_rationale: 覆盖 task-06/task-23（high）；免费止损位来源，标号修正机制
+    one_liner: 分界点是免费止损位；标号上移下移不等于换级别
+    intents:
+      - 找多空分界点
+      - 判断破与不破怎么应对
+      - 处理标号上移下移
+      - 找天然止损位
+    keywords: [多空分界点, 上移, 下移, 改标, 双节棍, dividing line, relabel]
+    also_read: [correction-pattern-dictionary-skill, stop-target-and-exit-skill, position-decides-strategy]
+    card: cards/bull-bear-divide-and-relabeling-skill.md
+    frontmatter:
+      description: >-
+        当用户问「多空分界点在哪、破了怎么办、标号变了怎么算」时使用。用双节棍 C 浪低点等结构定位
+        多空分界点（免费止损位），并用上移/下移修正标号而不改级别。
+        不适用于普通三浪调整（不产生分界点）；不适用于未定级时使用。
+      tags: [wave-theory-skill, level, stop-loss, relabel]
+    source_evidence:
+      - source_id: src-main-book
+        location: 第十章 五；第一章 第六节 图 1-9/1-10；特色术语
+    promotion:
+      destination: promoted
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+
+  - capability_id: cap.wave-accurate-timing-skill.position-decides-strategy
+    revision: 1
+    status: active
+    slug: position-decides-strategy
+    title: 位置决定策略
+    importance: high
+    importance_rationale: 覆盖 task-22（high）；同一形态位置不同策略不同，是本书区别于普通波浪书之处
+    one_liner: 同一形态位置不同，策略、目标、止损全不同
+    intents:
+      - 判断当前位置该用什么策略
+      - 决定仓位轻重
+      - 判断是顺势还是反弹
+    keywords: [位置, 策略, 仓位, 顺势, 反弹, position, strategy]
+    also_read: [wave-degree-and-direction-skill, forecast-methods, trend-following-entry-skill]
+    card: cards/position-decides-strategy-skill.md
+    frontmatter:
+      description: >-
+        当用户问「这个位置该买还是该卖、为什么同样形态这次不灵、仓位该多重」时使用。按「本级别在大一级
+        哪一段＋周线在月线/月线在年线的位置」映射策略、目标、止损三档。
+        不适用于位置未定时套用形态规则；不适用于把价格高低当位置。
+      tags: [wave-theory-skill, position, strategy, sizing]
+    source_evidence:
+      - source_id: src-main-book
+        location: 第九章 全章；图 9-1~9-14
+    promotion:
+      destination: router
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+      notes: 与 U01 意图重叠，作为路由入口内能力卡
+
+  - capability_id: cap.wave-accurate-timing-skill.trend-following-entry-skill
+    revision: 1
+    status: active
+    slug: trend-following-entry-skill
+    title: 顺势点
+    importance: critical
+    importance_rationale: 覆盖 task-07/task-13/task-14（critical）；顺势买点决定主仓位置
+    one_liner: 大一级趋势确立后，本级别调整结束才是顺势点
+    intents:
+      - 找顺势买点
+      - 判断回调到哪里买
+      - 区分回调与反转
+      - 找加仓点
+    keywords: [顺势点, 回调买点, 趋势确立, 加仓, pullback, trend following]
+    also_read: [countertrend-entry-and-trade-point-taxonomy-skill, structure-condition-vs-end-signal-skill, stop-target-and-exit-skill]
+    card: cards/trend-following-entry-skill.md
+    frontmatter:
+      description: >-
+        当用户问「趋势已经涨起来了、回调到哪里可以买、这个是回调还是反转」时使用。要求高一级趋势已确立、
+        本级别调整出现结束信号、且验证收在关键低点之上，才构成顺势点。
+        不适用于趋势未确立时的回调买入；不适用于月线下跌中做周线顺势点。
+      tags: [wave-theory-skill, entry, trend-following, pullback]
+    source_evidence:
+      - source_id: src-main-book
+        location: 第四章 第六~十节；图 4-31；第二章 第二节
+    promotion:
+      destination: promoted
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+
+  - capability_id: cap.wave-accurate-timing-skill.stop-target-and-exit-skill
+    revision: 1
+    status: active
+    slug: stop-target-and-exit-skill
+    title: 止损·目标·出局
+    importance: critical
+    importance_rationale: 覆盖 task-26（critical）；把分析变成可下单声明的必备环节，每次交易都要用
+    one_liner: 止损放浪起点外，目标放高一级结构条件处，主动/被动出局分开设
+    intents:
+      - 止损放哪里
+      - 目标位多少
+      - 什么时候走
+      - 风险回报比怎么算
+    keywords: [止损, 目标位, 主动出局, 被动出局, 风险回报比, stop loss, target, exit]
+    also_read: [countertrend-entry-and-trade-point-taxonomy-skill, trend-following-entry-skill, bull-bear-divide-and-relabeling-skill]
+    card: cards/stop-target-and-exit-skill.md
+    frontmatter:
+      description: >-
+        当用户问「止损放哪、目标多少、什么时候走、风险回报比多少」时使用。止损放本浪起点之外，
+        目标放高一级浪具备结构条件处，主动出局与被动出局事先分设，并给止损迁移规则。
+        不适用于无结构标注时凭感觉设止损；不适用于用固定百分比替代浪起点。
+      tags: [wave-theory-skill, risk, stop-loss, exit]
+    source_evidence:
+      - source_id: src-main-book
+        location: 第一章 第四节；第四章；第八章 第十六节；图 8-35/8-36
+    promotion:
+      destination: promoted
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+
+  - capability_id: cap.wave-accurate-timing-skill.short-term-entry-patterns
+    revision: 1
+    status: active
+    slug: short-term-entry-patterns
+    title: 短线买点
+    importance: high
+    importance_rationale: 覆盖 task-15（high）；短线交易者主要场景，但场景窄
+    one_liner: 以周线状态为准的四类短线买点
+    intents:
+      - 短线能不能买
+      - 周线回调买点
+      - 短线买点类型判断
+    keywords: [短线买点, 周线回调, 上倾信号, 由弱转强, short term entry]
+    also_read: [countertrend-entry-and-trade-point-taxonomy-skill, position-decides-strategy, structure-condition-vs-end-signal-skill]
+    card: cards/short-term-entry-patterns-skill.md
+    frontmatter:
+      description: >-
+        当用户问「短线能买吗、这个回调可以进吗、周线回调买点」时使用。按周线状态分四类短线买点
+        （B 回调幅度少/三角形上破/上倾信号/由弱转强），入场用日线结束信号。
+        不适用于周线弱势时的短线抄底；不适用于把日线信号当唯一依据。
+      tags: [wave-theory-skill, short-term, entry]
+    source_evidence:
+      - source_id: src-main-book
+        location: 第五章；图 5-1~5-8
+    promotion:
+      destination: router
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: false, independent_eval: true}
+      notes: 场景窄且与 U04/U07 触发近邻，作为路由入口内能力卡
+
+  - capability_id: cap.wave-accurate-timing-skill.sector-stock-selection-skill
+    revision: 1
+    status: active
+    slug: sector-stock-selection-skill
+    title: 板块选股
+    importance: high
+    importance_rationale: 覆盖 task-16（high）；A 股板块轮动适配，但依赖板块指数数据
+    one_liner: 先板块后个股的四层漏斗
+    intents:
+      - 哪个板块要启动
+      - 板块启动怎么选股
+      - 板块内选个股
+    keywords: [板块选股, 板块轮动, 月线三浪, 选股, sector rotation]
+    also_read: [position-decides-strategy, high-probability-resonance, countertrend-entry-and-trade-point-taxonomy-skill]
+    card: cards/sector-stock-selection-skill.md
+    frontmatter:
+      description: >-
+        当用户问「哪个板块要启动、怎么在启动板块里选股」时使用。按「板块月线三浪调整上倾/预期三角形/
+        幅度少」三类信号筛板块，确认启动后选个股、交易月线（C）浪。
+        不适用于板块未启动时选个股；不适用于只看个股不看板块。
+      tags: [wave-theory-skill, sector, stock-selection-skill]
+    source_evidence:
+      - source_id: src-main-book
+        location: 第六章；图 6-1~6-26
+    promotion:
+      destination: router
+      gate: {independent_intent: true, independent_contract: true, independent_run: false, independent_reuse: true, independent_eval: false}
+      notes: 依赖板块指数数据与轮动判断，先作能力卡
+
+  - capability_id: cap.wave-accurate-timing-skill.high-probability-resonance
+    revision: 1
+    status: active
+    slug: high-probability-resonance
+    title: 高胜率结构与共振
+    importance: critical
+    importance_rationale: 覆盖 task-24/task-25（critical）；作者反复强调的最高胜率场景
+    one_liner: 一个点被几级同时解释，就是共振买点
+    intents:
+      - 有没有共振买点
+      - 多个买点挑最好的
+      - 仓位该多重
+    keywords: [一点三级共振, 高胜率, 共振买点, confluence, resonance]
+    also_read: [countertrend-entry-and-trade-point-taxonomy-skill, trend-following-entry-skill, multi-timeframe-crosscheck]
+    card: cards/high-probability-resonance-skill.md
+    frontmatter:
+      description: >-
+        当用户问「这个点是不是多个级别都到位、有没有共振买点、仓位该多重」时使用。按「同一点同时是本级/
+        高一级/高两级顺势点」判定共振，按共振级数定仓位与三档目标。
+        不适用于只有单周期数据；不适用于把价格接近当结构共振。
+      tags: [wave-theory-skill, confluence, position, probability]
+    source_evidence:
+      - source_id: src-main-book
+        location: 第十章 三、五节；图 10-15/10-16；前言
+    promotion:
+      destination: router
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+      notes: 与 U04/U07 触发近邻，预算所限作能力卡
+
+  - capability_id: cap.wave-accurate-timing-skill.multi-timeframe-crosscheck
+    revision: 1
+    status: active
+    slug: multi-timeframe-crosscheck
+    title: 多周期复核
+    importance: high
+    importance_rationale: 覆盖 task-20/task-29（high）；大级别转势常被隐藏，需小周期确认
+    one_liner: 大级别看不清就逐级下钻，找隐藏的转势信号
+    intents:
+      - 日线看不出方向怎么办
+      - 大级别转势怎么提前发现
+      - 多周期确认
+    keywords: [多周期, 隐藏转势信号, 下钻, 30分线, 60分线, multi-timeframe]
+    also_read: [wave-degree-and-direction-skill, structure-condition-vs-end-signal-skill, high-probability-resonance]
+    card: cards/multi-timeframe-crosscheck-skill.md
+    frontmatter:
+      description: >-
+        当用户问「日线看不出方向、大级别转势怎么提前发现、多周期怎么确认」时使用。在大级别发现可疑转折后
+        逐级下钻到 30 分/60 分/5 分线确认结束信号，再回大级别执行。
+        不适用于小周期信号脱离大级别单独使用；不适用于数据不足无法下钻。
+      tags: [wave-theory-skill, multi-timeframe, confirmation]
+    source_evidence:
+      - source_id: src-main-book
+        location: 第八章 第六~八节；图 8-14/8-15
+    promotion:
+      destination: router
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: true}
+      notes: 预算所限，且可作为 U01/U02 的复核步骤
+
+  - capability_id: cap.wave-accurate-timing-skill.ambiguity-handling
+    revision: 1
+    status: active
+    slug: ambiguity-handling
+    title: 多标注与不确定性
+    importance: high
+    importance_rationale: 覆盖 task-21（high）；实盘必然遇到多解，书中给了可操作的三选一
+    one_liner: 多标注时不选边也能下单：等条件、等验证、或降仓
+    intents:
+      - 两种数法都说得通怎么办
+      - 数浪纠结怎么下单
+      - 不确定时仓位怎么定
+    keywords: [多标注, 不确定性, 降仓, 等验证, ambiguity, multiple counts]
+    also_read: [wave-degree-and-direction-skill, correction-pattern-dictionary-skill, stop-target-and-exit-skill]
+    card: cards/ambiguity-handling-skill.md
+    frontmatter:
+      description: >-
+        当用户问「这段走势我数不清、两种数法都说得通、不确定时怎么下单」时使用。用「等调整幅度大的结构
+        具备条件、等验证、降仓」三选一处理多标注，不硬选边也能下单。
+        不适用于把数不清当随便做；不适用于用降仓代替止损。
+      tags: [wave-theory-skill, ambiguity, uncertainty, position]
+    source_evidence:
+      - source_id: src-main-book
+        location: 第八章 第十八节；图 8-38
+    promotion:
+      destination: router
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: true, independent_eval: false}
+      notes: 评测主观，作能力卡
+
+  - capability_id: cap.wave-accurate-timing-skill.forecast-methods
+    revision: 1
+    status: active
+    slug: forecast-methods
+    title: 走势预测法
+    importance: high
+    importance_rationale: 覆盖 task-10（high）；五种预测口径是持仓与加仓决策依据
+    one_liner: 结构、形态、周期、位置、关键点五种预测口径
+    intents:
+      - 接下来会怎么走
+      - 能涨到哪
+      - 走势预测
+    keywords: [走势预测, 结构预测, 形态预测, 周期预测, 位置预测, 关键点, forecast]
+    also_read: [wave-degree-and-direction-skill, position-decides-strategy, structure-condition-vs-end-signal-skill]
+    card: cards/forecast-methods-skill.md
+    frontmatter:
+      description: >-
+        当用户问「接下来会怎么走、能涨到哪」时使用。用结构、形态、周期、位置、关键点五种口径给出
+        可被后市验证的路径与关键点，而非精确点位。
+        不适用于把预测当保证；不适用于五项信息不足时硬预测。
+      tags: [wave-theory-skill, forecast, prediction]
+    source_evidence:
+      - source_id: src-main-book
+        location: 第三章 第一节；图 3-1~3-11
+    promotion:
+      destination: router
+      gate: {independent_intent: true, independent_contract: true, independent_run: true, independent_reuse: false, independent_eval: false}
+      notes: 与 U01/U06 意图重叠，预测法偏泛，作能力卡

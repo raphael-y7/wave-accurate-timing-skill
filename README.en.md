@@ -2,7 +2,7 @@
 
 <p align="center"><a href="README.md">中文</a> | English</p>
 
-An AI skill pack for immediate use — it distills the internal-wave-structure timing method from Chen Xiaodong's *Accurate Timing: Wave Theory Practical Strategy* into 14 capability cards that can be triggered individually or combined.
+An AI skill pack for immediate use — it distills the internal-wave-structure timing method from 陈晓东's *Accurate Timing: Wave Theory Practical Strategy* into 14 capability cards that can be triggered individually or combined.
 
 It is not a book summary, nor a reading response — it breaks the reusable methodology in the book into skill modules that can be triggered, executed and tested.
 
@@ -19,11 +19,11 @@ It is not a book summary, nor a reading response — it breaks the reusable meth
 
 14 capability cards, organized in the order "fix degree and direction first, judge whether the structure has ended second, land on entries and exits last":
 
-- **Degree and structure**: `wave-degree-and-direction-skill` (degree and direction), `structure-condition-vs-end-signal-skill` (structure condition vs end signal), `correction-pattern-dictionary-skill` (correction pattern dictionary: scissors, sickle, nunchaku and four special structures)
-- **Locating trade points**: `countertrend-entry-and-trade-point-taxonomy-skill` (countertrend bottom-fishing and the trade-point taxonomy), `bull-bear-divide-and-relabeling-skill` (the bull/bear dividing line and relabeling), `trend-following-entry-skill` (trend-following points), `short-term-entry-patterns` (short-term entries)
-- **Risk and exits**: `stop-target-and-exit-skill` (stop, target and exit)
-- **Position, confluence and cross-checks**: `position-decides-strategy` (position decides strategy), `high-probability-resonance` (high-probability structures and three-level confluence), `multi-timeframe-crosscheck` (multi-timeframe cross-check), `ambiguity-handling` (multiple counts and uncertainty)
-- **Stock selection and forecasting**: `sector-stock-selection-skill` (picking stocks when a sector turns up), `forecast-methods` (forecasting methods)
+- **Degree and structure** (3): `wave-degree-and-direction-skill` (degree and direction), `structure-condition-vs-end-signal-skill` (structure condition vs end signal), `correction-pattern-dictionary-skill` (correction pattern dictionary: scissors, sickle, nunchaku and four special structures)
+- **Locating trade points** (4): `countertrend-entry-and-trade-point-taxonomy-skill` (countertrend bottom-fishing and the trade-point taxonomy), `bull-bear-divide-and-relabeling-skill` (the bull/bear dividing line and relabeling), `trend-following-entry-skill` (trend-following points), `short-term-entry-patterns` (short-term entries)
+- **Risk and exits** (1): `stop-target-and-exit-skill` (stop, target and exit)
+- **Position, confluence and cross-checks** (4): `position-decides-strategy` (position decides strategy), `high-probability-resonance` (high-probability structures and three-level confluence), `multi-timeframe-crosscheck` (multi-timeframe cross-check), `ambiguity-handling` (multiple counts and uncertainty)
+- **Stock selection and forecasting** (2): `sector-stock-selection-skill` (picking stocks when a sector turns up), `forecast-methods` (forecasting methods)
 
 ## Two packaging modes: single and pack
 
@@ -140,6 +140,27 @@ wave-accurate-timing-skill/
 ├── LICENSE                        ← MIT
 ├── BOOK_OVERVIEW.md               ← whole-book comprehension (Adler four-step, stage 0 output)
 ├── verified.md                    ← triple-verification conclusions and follow-up review
+├── INDEX.md                       ← skill map: capability table + dependencies + loading order
+├── bundle/                        ← distillation intermediates (auditable)
+│   ├── verified.yaml              ← full spec of the 14 capability units (single source of truth)
+│   ├── cards/
+│   │   ├── ambiguity-handling-skill.md
+│   │   ├── bull-bear-divide-and-relabeling-skill.md
+│   │   ├── correction-pattern-dictionary-skill.md
+│   │   ├── countertrend-entry-and-trade-point-taxonomy-skill.md
+│   │   ├── forecast-methods-skill.md
+│   │   ├── high-probability-resonance-skill.md
+│   │   ├── multi-timeframe-crosscheck-skill.md
+│   │   ├── position-decides-strategy-skill.md
+│   │   ├── sector-stock-selection-skill.md
+│   │   ├── short-term-entry-patterns-skill.md
+│   │   ├── stop-target-and-exit-skill.md
+│   │   ├── structure-condition-vs-end-signal-skill.md
+│   │   ├── trend-following-entry-skill.md
+│   │   └── wave-degree-and-direction-skill.md
+│   └── book/
+│       ├── overview.md            ← book overview
+│       └── glossary.md            ← glossary
 ├── single/                        ← single-entry build
 │   └── wave-accurate-timing-skill/
 │       ├── SKILL.md               ← entry: triggers + router table + loading rules
@@ -150,12 +171,45 @@ wave-accurate-timing-skill/
 │           ├── cheatsheet.md      ← decision-rule quick reference
 │           ├── glossary.md        ← glossary
 │           └── capabilities/      ← the 14 capability cards
+│               ├── ambiguity-handling.md
+│               ├── bull-bear-divide-and-relabeling-skill.md
+│               ├── correction-pattern-dictionary-skill.md
+│               ├── countertrend-entry-and-trade-point-taxonomy-skill.md
+│               ├── forecast-methods.md
+│               ├── high-probability-resonance.md
+│               ├── multi-timeframe-crosscheck.md
+│               ├── position-decides-strategy.md
+│               ├── sector-stock-selection-skill.md
+│               ├── short-term-entry-patterns.md
+│               ├── stop-target-and-exit-skill.md
+│               ├── structure-condition-vs-end-signal-skill.md
+│               ├── trend-following-entry-skill.md
+│               └── wave-degree-and-direction-skill.md
 ├── pack/                          ← multi-entry build (compact pack)
 │   ├── BUILD_MANIFEST.json
 │   ├── capability-destinations.json
 │   ├── wave-accurate-timing-skill-router/
 │   │   ├── SKILL.md               ← source router entry
 │   │   └── references/            ← the 14 cards + index, called internally by the router
+│   │       ├── overview.md
+│   │       ├── capability-index.md
+│   │       ├── cheatsheet.md
+│   │       ├── glossary.md
+│   │       └── capabilities/
+│   │           ├── ambiguity-handling.md
+│   │           ├── bull-bear-divide-and-relabeling-skill.md
+│   │           ├── correction-pattern-dictionary-skill.md
+│   │           ├── countertrend-entry-and-trade-point-taxonomy-skill.md
+│   │           ├── forecast-methods.md
+│   │           ├── high-probability-resonance.md
+│   │           ├── multi-timeframe-crosscheck.md
+│   │           ├── position-decides-strategy.md
+│   │           ├── sector-stock-selection-skill.md
+│   │           ├── short-term-entry-patterns.md
+│   │           ├── stop-target-and-exit-skill.md
+│   │           ├── structure-condition-vs-end-signal-skill.md
+│   │           ├── trend-following-entry-skill.md
+│   │           └── wave-degree-and-direction-skill.md
 │   ├── wave-degree-and-direction-skill/
 │   │   └── SKILL.md
 │   ├── structure-condition-vs-end-signal-skill/
@@ -228,7 +282,7 @@ Ask "this correction moved the `{c}` down again to 15.40 — can I buy the botto
 
 ## Source
 
-- *Accurate Timing: Wave Theory Practical Strategy* by Chen Xiaodong
+- *Accurate Timing: Wave Theory Practical Strategy* by 陈晓东
 - Distilled from the whole book, producing 14 capability cards
 
 ## Disclaimer
@@ -240,4 +294,3 @@ Every criterion in the book (the tolerance of a "verified close", tranche ratios
 ## License
 
 [MIT](./LICENSE)
-

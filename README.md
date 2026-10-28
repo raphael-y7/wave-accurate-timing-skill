@@ -19,11 +19,11 @@
 
 14 张能力卡，按「先定级定方向、再判结构是否结束、最后落到买卖点与出局」的顺序组织：
 
-- **定级与结构判定**：`wave-degree-and-direction-skill`（定级定方向）、`structure-condition-vs-end-signal-skill`（结构条件与结束信号）、`correction-pattern-dictionary-skill`（调整形态词典：剪刀 / 镰刀 / 双节棍与四种特殊结构）
-- **交易点定位**：`countertrend-entry-and-trade-point-taxonomy-skill`（逆势抓底与三类交易点）、`bull-bear-divide-and-relabeling-skill`（多空分界点与上移下移）、`trend-following-entry-skill`（顺势点）、`short-term-entry-patterns`（短线买点）
-- **风控与出局**：`stop-target-and-exit-skill`（止损·目标·出局）
-- **位置、共振与复核**：`position-decides-strategy`（位置决定策略）、`high-probability-resonance`（高胜率结构与一点三级共振）、`multi-timeframe-crosscheck`（多周期复核）、`ambiguity-handling`（多标注与不确定性）
-- **选股与预测**：`sector-stock-selection-skill`（板块启动时选股）、`forecast-methods`（走势预测法）
+- **定级与结构判定**（3 张）：`wave-degree-and-direction-skill`（定级定方向）、`structure-condition-vs-end-signal-skill`（结构条件与结束信号）、`correction-pattern-dictionary-skill`（调整形态词典：剪刀 / 镰刀 / 双节棍与四种特殊结构）
+- **交易点定位**（4 张）：`countertrend-entry-and-trade-point-taxonomy-skill`（逆势抓底与三类交易点）、`bull-bear-divide-and-relabeling-skill`（多空分界点与上移下移）、`trend-following-entry-skill`（顺势点）、`short-term-entry-patterns`（短线买点）
+- **风控与出局**（1 张）：`stop-target-and-exit-skill`（止损·目标·出局）
+- **位置、共振与复核**（4 张）：`position-decides-strategy`（位置决定策略）、`high-probability-resonance`（高胜率结构与一点三级共振）、`multi-timeframe-crosscheck`（多周期复核）、`ambiguity-handling`（多标注与不确定性）
+- **选股与预测**（2 张）：`sector-stock-selection-skill`（板块启动时选股）、`forecast-methods`（走势预测法）
 
 ## 两种打包模式：single 与 pack
 
@@ -140,6 +140,27 @@ wave-accurate-timing-skill/
 ├── LICENSE                        ← MIT
 ├── BOOK_OVERVIEW.md               ← 整书理解（Adler 四步拆解，阶段 0 产出）
 ├── verified.md                    ← 三重验证结论与补审记录
+├── INDEX.md                       ← skill 地图：能力总表 + 依赖关系 + 加载顺序
+├── bundle/                        ← 蒸馏中间产物（可审计）
+│   ├── verified.yaml              ← 14 个能力单元的完整规格（本仓库的单一事实来源）
+│   ├── cards/
+│   │   ├── ambiguity-handling-skill.md
+│   │   ├── bull-bear-divide-and-relabeling-skill.md
+│   │   ├── correction-pattern-dictionary-skill.md
+│   │   ├── countertrend-entry-and-trade-point-taxonomy-skill.md
+│   │   ├── forecast-methods-skill.md
+│   │   ├── high-probability-resonance-skill.md
+│   │   ├── multi-timeframe-crosscheck-skill.md
+│   │   ├── position-decides-strategy-skill.md
+│   │   ├── sector-stock-selection-skill.md
+│   │   ├── short-term-entry-patterns-skill.md
+│   │   ├── stop-target-and-exit-skill.md
+│   │   ├── structure-condition-vs-end-signal-skill.md
+│   │   ├── trend-following-entry-skill.md
+│   │   └── wave-degree-and-direction-skill.md
+│   └── book/
+│       ├── overview.md            ← 整书概览
+│       └── glossary.md            ← 术语表
 ├── single/                        ← 单一入口模式
 │   └── wave-accurate-timing-skill/
 │       ├── SKILL.md               ← 入口：触发条件 + 路由表 + 加载规则
@@ -150,12 +171,45 @@ wave-accurate-timing-skill/
 │           ├── cheatsheet.md      ← 决策规则速查
 │           ├── glossary.md        ← 术语表
 │           └── capabilities/      ← 14 张能力卡
+│               ├── ambiguity-handling.md
+│               ├── bull-bear-divide-and-relabeling-skill.md
+│               ├── correction-pattern-dictionary-skill.md
+│               ├── countertrend-entry-and-trade-point-taxonomy-skill.md
+│               ├── forecast-methods.md
+│               ├── high-probability-resonance.md
+│               ├── multi-timeframe-crosscheck.md
+│               ├── position-decides-strategy.md
+│               ├── sector-stock-selection-skill.md
+│               ├── short-term-entry-patterns.md
+│               ├── stop-target-and-exit-skill.md
+│               ├── structure-condition-vs-end-signal-skill.md
+│               ├── trend-following-entry-skill.md
+│               └── wave-degree-and-direction-skill.md
 ├── pack/                          ← 多入口模式（compact pack）
 │   ├── BUILD_MANIFEST.json
 │   ├── capability-destinations.json
 │   ├── wave-accurate-timing-skill-router/
 │   │   ├── SKILL.md               ← 来源路由入口
 │   │   └── references/            ← 14 张卡 + 索引，供 router 内部调用
+│   │       ├── overview.md
+│   │       ├── capability-index.md
+│   │       ├── cheatsheet.md
+│   │       ├── glossary.md
+│   │       └── capabilities/
+│   │           ├── ambiguity-handling.md
+│   │           ├── bull-bear-divide-and-relabeling-skill.md
+│   │           ├── correction-pattern-dictionary-skill.md
+│   │           ├── countertrend-entry-and-trade-point-taxonomy-skill.md
+│   │           ├── forecast-methods.md
+│   │           ├── high-probability-resonance.md
+│   │           ├── multi-timeframe-crosscheck.md
+│   │           ├── position-decides-strategy.md
+│   │           ├── sector-stock-selection-skill.md
+│   │           ├── short-term-entry-patterns.md
+│   │           ├── stop-target-and-exit-skill.md
+│   │           ├── structure-condition-vs-end-signal-skill.md
+│   │           ├── trend-following-entry-skill.md
+│   │           └── wave-degree-and-direction-skill.md
 │   ├── wave-degree-and-direction-skill/
 │   │   └── SKILL.md
 │   ├── structure-condition-vs-end-signal-skill/
@@ -240,4 +294,3 @@ $dest = "$env:USERPROFILE\.agents\skills"
 ## License
 
 [MIT](./LICENSE)
-

@@ -1,5 +1,5 @@
 ---
-name: wave-accurate-timing-skill
+name: wave-accurate-timing-skill-router
 description: |
   陈晓东《精准择时》体系入口（择时与买卖点）：定级定方向、结构条件与结束信号、调整形态词典、 逆势抓底与三类交易点、多空分界点、位置策略、顺势点、止损目标出局、短线买点、板块选股、 高胜率共振、多周期复核、多标注应对、走势预测。与同作者《精准数浪》技能区分：数浪入口解决 「浪怎么数、级别怎么标」，本入口解决「数完之后何时买、买多少、何时走」。不适用于纯基本面与消息面。
 metadata:
@@ -38,15 +38,15 @@ metadata:
 | 识别调整浪形态；判断调整会有多深；判断后续 C 浪强弱；区分剪刀/镰刀/双节棍 | references/capabilities/correction-pattern-dictionary-skill.md | 已晋级为独立 Skill `correction-pattern-dictionary-skill`（已安装时优先直接使用；本卡仅作原文与背景补充） |
 | 判断这个低点能不能抄；区分逆势点/转势点/顺势点；制定分批建仓计划；设定止损链 | references/capabilities/countertrend-entry-and-trade-point-taxonomy-skill.md | 已晋级为独立 Skill `countertrend-entry-and-trade-point-taxonomy-skill`（已安装时优先直接使用；本卡仅作原文与背景补充） |
 | 找多空分界点；判断破与不破怎么应对；处理标号上移下移；找天然止损位 | references/capabilities/bull-bear-divide-and-relabeling-skill.md | 已晋级为独立 Skill `bull-bear-divide-and-relabeling-skill`（已安装时优先直接使用；本卡仅作原文与背景补充） |
-| 判断当前位置该用什么策略；决定仓位轻重；判断是顺势还是反弹 | references/capabilities/position-decides-strategy-skill.md | references/capabilities/wave-degree-and-direction-skill.md、references/capabilities/forecast-methods-skill.md、references/capabilities/trend-following-entry-skill.md |
+| 判断当前位置该用什么策略；决定仓位轻重；判断是顺势还是反弹 | references/capabilities/position-decides-strategy.md | references/capabilities/wave-degree-and-direction-skill.md、references/capabilities/forecast-methods.md、references/capabilities/trend-following-entry-skill.md |
 | 找顺势买点；判断回调到哪里买；区分回调与反转；找加仓点 | references/capabilities/trend-following-entry-skill.md | 已晋级为独立 Skill `trend-following-entry-skill`（已安装时优先直接使用；本卡仅作原文与背景补充） |
 | 止损放哪里；目标位多少；什么时候走；风险回报比怎么算 | references/capabilities/stop-target-and-exit-skill.md | 已晋级为独立 Skill `stop-target-and-exit-skill`（已安装时优先直接使用；本卡仅作原文与背景补充） |
-| 短线能不能买；周线回调买点；短线买点类型判断 | references/capabilities/short-term-entry-patterns-skill.md | references/capabilities/countertrend-entry-and-trade-point-taxonomy-skill.md、references/capabilities/position-decides-strategy-skill.md、references/capabilities/structure-condition-vs-end-signal-skill.md |
-| 哪个板块要启动；板块启动怎么选股；板块内选个股 | references/capabilities/sector-stock-selection-skill.md | references/capabilities/position-decides-strategy-skill.md、references/capabilities/high-probability-resonance-skill.md、references/capabilities/countertrend-entry-and-trade-point-taxonomy-skill.md |
-| 有没有共振买点；多个买点挑最好的；仓位该多重 | references/capabilities/high-probability-resonance-skill.md | references/capabilities/countertrend-entry-and-trade-point-taxonomy-skill.md、references/capabilities/trend-following-entry-skill.md、references/capabilities/multi-timeframe-crosscheck-skill.md |
-| 日线看不出方向怎么办；大级别转势怎么提前发现；多周期确认 | references/capabilities/multi-timeframe-crosscheck-skill.md | references/capabilities/wave-degree-and-direction-skill.md、references/capabilities/structure-condition-vs-end-signal-skill.md、references/capabilities/high-probability-resonance-skill.md |
-| 两种数法都说得通怎么办；数浪纠结怎么下单；不确定时仓位怎么定 | references/capabilities/ambiguity-handling-skill.md | references/capabilities/wave-degree-and-direction-skill.md、references/capabilities/correction-pattern-dictionary-skill.md、references/capabilities/stop-target-and-exit-skill.md |
-| 接下来会怎么走；能涨到哪；走势预测 | references/capabilities/forecast-methods-skill.md | references/capabilities/wave-degree-and-direction-skill.md、references/capabilities/position-decides-strategy-skill.md、references/capabilities/structure-condition-vs-end-signal-skill.md |
+| 短线能不能买；周线回调买点；短线买点类型判断 | references/capabilities/short-term-entry-patterns.md | references/capabilities/countertrend-entry-and-trade-point-taxonomy-skill.md、references/capabilities/position-decides-strategy.md、references/capabilities/structure-condition-vs-end-signal-skill.md |
+| 哪个板块要启动；板块启动怎么选股；板块内选个股 | references/capabilities/sector-stock-selection-skill.md | references/capabilities/position-decides-strategy.md、references/capabilities/high-probability-resonance.md、references/capabilities/countertrend-entry-and-trade-point-taxonomy-skill.md |
+| 有没有共振买点；多个买点挑最好的；仓位该多重 | references/capabilities/high-probability-resonance.md | references/capabilities/countertrend-entry-and-trade-point-taxonomy-skill.md、references/capabilities/trend-following-entry-skill.md、references/capabilities/multi-timeframe-crosscheck.md |
+| 日线看不出方向怎么办；大级别转势怎么提前发现；多周期确认 | references/capabilities/multi-timeframe-crosscheck.md | references/capabilities/wave-degree-and-direction-skill.md、references/capabilities/structure-condition-vs-end-signal-skill.md、references/capabilities/high-probability-resonance.md |
+| 两种数法都说得通怎么办；数浪纠结怎么下单；不确定时仓位怎么定 | references/capabilities/ambiguity-handling.md | references/capabilities/wave-degree-and-direction-skill.md、references/capabilities/correction-pattern-dictionary-skill.md、references/capabilities/stop-target-and-exit-skill.md |
+| 接下来会怎么走；能涨到哪；走势预测 | references/capabilities/forecast-methods.md | references/capabilities/wave-degree-and-direction-skill.md、references/capabilities/position-decides-strategy.md、references/capabilities/structure-condition-vs-end-signal-skill.md |
 
 **非能力类查询**：
 - 书名/作者/章节/整书概览 → references/overview.md

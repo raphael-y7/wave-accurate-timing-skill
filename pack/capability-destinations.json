@@ -1,65 +1,65 @@
 {
   "generated_by": "cangjie-tools v2.5.0",
   "bundle_id": "bundle.wave-accurate-timing-skill",
-  "router_entrypoint": "wave-accurate-timing-skill",
+  "router_entrypoint": "wave-accurate-timing-skill-router",
   "entrypoint_count": 8,
   "capability_count": 14,
   "destinations": {
     "cap.wave-accurate-timing-skill.wave-degree-and-direction-skill": {
       "promoted_to": "wave-degree-and-direction-skill",
-      "router_view": "wave-accurate-timing-skill/references/capabilities/wave-degree-and-direction-skill.md"
+      "router_view": "wave-accurate-timing-skill-router/references/capabilities/wave-degree-and-direction-skill.md"
     },
     "cap.wave-accurate-timing-skill.structure-condition-vs-end-signal-skill": {
       "promoted_to": "structure-condition-vs-end-signal-skill",
-      "router_view": "wave-accurate-timing-skill/references/capabilities/structure-condition-vs-end-signal-skill.md"
+      "router_view": "wave-accurate-timing-skill-router/references/capabilities/structure-condition-vs-end-signal-skill.md"
     },
     "cap.wave-accurate-timing-skill.correction-pattern-dictionary-skill": {
       "promoted_to": "correction-pattern-dictionary-skill",
-      "router_view": "wave-accurate-timing-skill/references/capabilities/correction-pattern-dictionary-skill.md"
+      "router_view": "wave-accurate-timing-skill-router/references/capabilities/correction-pattern-dictionary-skill.md"
     },
     "cap.wave-accurate-timing-skill.countertrend-entry-and-trade-point-taxonomy-skill": {
       "promoted_to": "countertrend-entry-and-trade-point-taxonomy-skill",
-      "router_view": "wave-accurate-timing-skill/references/capabilities/countertrend-entry-and-trade-point-taxonomy-skill.md"
+      "router_view": "wave-accurate-timing-skill-router/references/capabilities/countertrend-entry-and-trade-point-taxonomy-skill.md"
     },
     "cap.wave-accurate-timing-skill.bull-bear-divide-and-relabeling-skill": {
       "promoted_to": "bull-bear-divide-and-relabeling-skill",
-      "router_view": "wave-accurate-timing-skill/references/capabilities/bull-bear-divide-and-relabeling-skill.md"
+      "router_view": "wave-accurate-timing-skill-router/references/capabilities/bull-bear-divide-and-relabeling-skill.md"
     },
     "cap.wave-accurate-timing-skill.position-decides-strategy": {
-      "served_by": "wave-accurate-timing-skill",
-      "card": "wave-accurate-timing-skill/references/capabilities/position-decides-strategy-skill.md"
+      "served_by": "wave-accurate-timing-skill-router",
+      "card": "wave-accurate-timing-skill-router/references/capabilities/position-decides-strategy.md"
     },
     "cap.wave-accurate-timing-skill.trend-following-entry-skill": {
       "promoted_to": "trend-following-entry-skill",
-      "router_view": "wave-accurate-timing-skill/references/capabilities/trend-following-entry-skill.md"
+      "router_view": "wave-accurate-timing-skill-router/references/capabilities/trend-following-entry-skill.md"
     },
     "cap.wave-accurate-timing-skill.stop-target-and-exit-skill": {
       "promoted_to": "stop-target-and-exit-skill",
-      "router_view": "wave-accurate-timing-skill/references/capabilities/stop-target-and-exit-skill.md"
+      "router_view": "wave-accurate-timing-skill-router/references/capabilities/stop-target-and-exit-skill.md"
     },
     "cap.wave-accurate-timing-skill.short-term-entry-patterns": {
-      "served_by": "wave-accurate-timing-skill",
-      "card": "wave-accurate-timing-skill/references/capabilities/short-term-entry-patterns-skill.md"
+      "served_by": "wave-accurate-timing-skill-router",
+      "card": "wave-accurate-timing-skill-router/references/capabilities/short-term-entry-patterns.md"
     },
     "cap.wave-accurate-timing-skill.sector-stock-selection-skill": {
-      "served_by": "wave-accurate-timing-skill",
-      "card": "wave-accurate-timing-skill/references/capabilities/sector-stock-selection-skill.md"
+      "served_by": "wave-accurate-timing-skill-router",
+      "card": "wave-accurate-timing-skill-router/references/capabilities/sector-stock-selection-skill.md"
     },
     "cap.wave-accurate-timing-skill.high-probability-resonance": {
-      "served_by": "wave-accurate-timing-skill",
-      "card": "wave-accurate-timing-skill/references/capabilities/high-probability-resonance-skill.md"
+      "served_by": "wave-accurate-timing-skill-router",
+      "card": "wave-accurate-timing-skill-router/references/capabilities/high-probability-resonance.md"
     },
     "cap.wave-accurate-timing-skill.multi-timeframe-crosscheck": {
-      "served_by": "wave-accurate-timing-skill",
-      "card": "wave-accurate-timing-skill/references/capabilities/multi-timeframe-crosscheck-skill.md"
+      "served_by": "wave-accurate-timing-skill-router",
+      "card": "wave-accurate-timing-skill-router/references/capabilities/multi-timeframe-crosscheck.md"
     },
     "cap.wave-accurate-timing-skill.ambiguity-handling": {
-      "served_by": "wave-accurate-timing-skill",
-      "card": "wave-accurate-timing-skill/references/capabilities/ambiguity-handling-skill.md"
+      "served_by": "wave-accurate-timing-skill-router",
+      "card": "wave-accurate-timing-skill-router/references/capabilities/ambiguity-handling.md"
     },
     "cap.wave-accurate-timing-skill.forecast-methods": {
-      "served_by": "wave-accurate-timing-skill",
-      "card": "wave-accurate-timing-skill/references/capabilities/forecast-methods-skill.md"
+      "served_by": "wave-accurate-timing-skill-router",
+      "card": "wave-accurate-timing-skill-router/references/capabilities/forecast-methods.md"
     }
   }
 }
