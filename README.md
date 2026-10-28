@@ -1,4 +1,4 @@
-<h1 align="center">陈晓东精准择时 Skill</h1>
+<h1 align="center">精准择时 Skill</h1>
 
 <p align="center">中文 | <a href="README.en.md">English</a></p>
 

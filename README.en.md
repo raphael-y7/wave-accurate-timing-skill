@@ -1,4 +1,4 @@
-<h1 align="center">Chen Xiaodong Accurate Timing Skill</h1>
+<h1 align="center">Wave Accurate Timing Skill</h1>
 
 <p align="center"><a href="README.md">中文</a> | English</p>
 
