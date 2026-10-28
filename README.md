@@ -122,11 +122,11 @@ pack 里被晋级为独立 skill 的 7 张卡：
 
 ## 测试与验证
 
-本仓库连生成过程的测试材料一起发布：`evals/test-prompts.json` 是固定用例集，`evals/test-results.md` 是逐项判卷与复核轮补测记录——包含方法、分项判定、未单测的挂账项，不是只留一句「全部通过」。
+本仓库连生成过程的测试材料一起发布：入口目录下的 `test-prompts.json` 是固定用例集（`single/wave-accurate-timing-skill/` 与 `pack/wave-accurate-timing-skill-router/` 各一份），`test-results.md`（仓库根目录）是逐项判卷与复核轮补测记录——包含方法、分项判定、未单测的挂账项，不是只留一句「全部通过」。
 
 - **盲测方法**：独立盲测代理（未参与蒸馏）只拿到技能路径与用户请求，先判「会不会触发、加载哪张卡」，再实际执行完整分析并写入文件；同时提供相邻技能（《精准数浪》《波浪理论》《道氏理论》）供混淆判断
-- **用例集条数**：`evals/test-prompts.json` 共 9 条 = 3 条正例 + 3 条诱饵 + 3 条边界；另有 2 个真实任务输出用例（T7 / T8）
-- **触发判定**（照 `evals/test-results.md` 原文）：正例 3 / 3 正确触发并正确执行；诱饵 3 / 3 未触发（其中 2 条正确转出到相邻技能）；边界 2 / 2 判定合理，第 3 条（T+1 可执行性）当批未单独实测，记为待补测
+- **用例集条数**：入口级 `test-prompts.json` 共 9 条 = 3 条正例 + 3 条诱饵 + 3 条边界；另有 2 个真实任务输出用例（T7 / T8）
+- **触发判定**（照 `test-results.md` 原文）：正例 3 / 3 正确触发并正确执行；诱饵 3 / 3 未触发（其中 2 条正确转出到相邻技能）；边界 2 / 2 判定合理，第 3 条（T+1 可执行性）当批未单独实测，记为待补测
 - **输出判定**：T8 与能力卡 E 段步骤逐条对应；T7 因场景本身缺 60 分调整浪低点，止损按规则判停、不猜价位——记的是「卡住的地方」而不是「通过了」
 - **复核轮补测**（2026-10-24）：edge-03 补测通过；T7 补上 60 分低点后复算，止损 16.88、目标 18.20（假设已注明）、风险回报比约 1.5:1；双 skill 近邻负例 4 / 4 单选无双重触发；触发套件复测 8 / 9，唯一分歧是「单纯数浪」在未装《精准数浪》的环境下由本技能接住；R 段引文逐字核对 38 / 38
 - **遗留与口径**：记录为无遗留；本仓库没有调平计数、没有改写判卷结果，也没有据此推算任何通过率
@@ -135,147 +135,31 @@ pack 里被晋级为独立 skill 的 7 张卡：
 
 ```text
 wave-accurate-timing-skill/
-├── README.md                      ← 你正在看的
-├── README.en.md                   ← English version
-├── LICENSE                        ← MIT
-├── BOOK_OVERVIEW.md               ← 整书理解（Adler 四步拆解，阶段 0 产出）
-├── verified.md                    ← 三重验证结论与补审记录
-├── INDEX.md                       ← skill 地图：能力总表 + 依赖关系 + 加载顺序
-├── TEST_SUMMARY.md                ← 阶段 4 压力测试摘要：用例规模 / 结构检查 / 结果
-├── CANGJIE_ADAPTATION.md          ← 仓颉适配说明：文本状态 / 蒸馏目标 / 证据规则 / 使用边界
-├── candidates/                    ← 阶段 1 五路提取候选池（5 类 × 8 块 + 全书级合并，共 45 个文本文件）
-│   ├── cases.md                   ← 案例类全书级合并
-│   ├── cases-chunk01.md
-│   ├── cases-chunk02.md
-│   ├── cases-chunk03.md
-│   ├── cases-chunk04.md
-│   ├── cases-chunk05.md
-│   ├── cases-chunk06.md
-│   ├── cases-chunk07.md
-│   ├── cases-chunk08.md
-│   ├── counter-examples.md        ← 反例类全书级合并
-│   ├── counter-examples-chunk01.md
-│   ├── counter-examples-chunk02.md
-│   ├── counter-examples-chunk03.md
-│   ├── counter-examples-chunk04.md
-│   ├── counter-examples-chunk05.md
-│   ├── counter-examples-chunk06.md
-│   ├── counter-examples-chunk07.md
-│   ├── counter-examples-chunk08.md
-│   ├── frameworks.md              ← 框架类全书级合并
-│   ├── frameworks-chunk01.md
-│   ├── frameworks-chunk02.md
-│   ├── frameworks-chunk03.md
-│   ├── frameworks-chunk04.md
-│   ├── frameworks-chunk05.md
-│   ├── frameworks-chunk06.md
-│   ├── frameworks-chunk07.md
-│   ├── frameworks-chunk08.md
-│   ├── glossary.md                ← 术语类全书级合并
-│   ├── glossary-chunk01.md
-│   ├── glossary-chunk02.md
-│   ├── glossary-chunk03.md
-│   ├── glossary-chunk04.md
-│   ├── glossary-chunk05.md
-│   ├── glossary-chunk06.md
-│   ├── glossary-chunk07.md
-│   ├── glossary-chunk08.md
-│   ├── principles.md              ← 原理类全书级合并
-│   ├── principles-chunk01.md
-│   ├── principles-chunk02.md
-│   ├── principles-chunk03.md
-│   ├── principles-chunk04.md
-│   ├── principles-chunk05.md
-│   ├── principles-chunk06.md
-│   ├── principles-chunk07.md
-│   └── principles-chunk08.md
-├── bundle/                        ← 蒸馏中间产物（可审计）
-│   ├── verified.yaml              ← 14 个能力单元的完整规格（本仓库的单一事实来源）
-│   ├── cards/
-│   │   ├── ambiguity-handling-skill.md
-│   │   ├── bull-bear-divide-and-relabeling-skill.md
-│   │   ├── correction-pattern-dictionary-skill.md
-│   │   ├── countertrend-entry-and-trade-point-taxonomy-skill.md
-│   │   ├── forecast-methods-skill.md
-│   │   ├── high-probability-resonance-skill.md
-│   │   ├── multi-timeframe-crosscheck-skill.md
-│   │   ├── position-decides-strategy-skill.md
-│   │   ├── sector-stock-selection-skill.md
-│   │   ├── short-term-entry-patterns-skill.md
-│   │   ├── stop-target-and-exit-skill.md
-│   │   ├── structure-condition-vs-end-signal-skill.md
-│   │   ├── trend-following-entry-skill.md
-│   │   └── wave-degree-and-direction-skill.md
-│   └── book/
-│       ├── overview.md            ← 整书概览
-│       └── glossary.md            ← 术语表
-├── single/                        ← 单一入口模式
-│   └── wave-accurate-timing-skill/
-│       ├── SKILL.md               ← 入口：触发条件 + 路由表 + 加载规则
-│       ├── BUILD_MANIFEST.json    ← 编译清单与文件哈希
-│       ├── test-prompts.json      ← 9 条固定用例（跟技能走的副本，与 evals/ 同内容）
-│       └── references/
-│           ├── overview.md        ← 整书概览
-│           ├── capability-index.md  ← 完整意图与关键词索引（14 张卡逐条登记）
-│           ├── cheatsheet.md      ← 决策规则速查
-│           ├── glossary.md        ← 术语表
-│           └── capabilities/      ← 14 张能力卡
-│               ├── ambiguity-handling.md
-│               ├── bull-bear-divide-and-relabeling-skill.md
-│               ├── correction-pattern-dictionary-skill.md
-│               ├── countertrend-entry-and-trade-point-taxonomy-skill.md
-│               ├── forecast-methods.md
-│               ├── high-probability-resonance.md
-│               ├── multi-timeframe-crosscheck.md
-│               ├── position-decides-strategy.md
-│               ├── sector-stock-selection-skill.md
-│               ├── short-term-entry-patterns.md
-│               ├── stop-target-and-exit-skill.md
-│               ├── structure-condition-vs-end-signal-skill.md
-│               ├── trend-following-entry-skill.md
-│               └── wave-degree-and-direction-skill.md
-├── pack/                          ← 多入口模式（compact pack）
-│   ├── BUILD_MANIFEST.json
-│   ├── capability-destinations.json
-│   ├── wave-accurate-timing-skill-router/
-│   │   ├── SKILL.md               ← 来源路由入口
-│   │   └── references/            ← 14 张卡 + 索引，供 router 内部调用
-│   │       ├── overview.md
-│   │       ├── capability-index.md
-│   │       ├── cheatsheet.md
-│   │       ├── glossary.md
-│   │       └── capabilities/
-│   │           ├── ambiguity-handling.md
-│   │           ├── bull-bear-divide-and-relabeling-skill.md
-│   │           ├── correction-pattern-dictionary-skill.md
-│   │           ├── countertrend-entry-and-trade-point-taxonomy-skill.md
-│   │           ├── forecast-methods.md
-│   │           ├── high-probability-resonance.md
-│   │           ├── multi-timeframe-crosscheck.md
-│   │           ├── position-decides-strategy.md
-│   │           ├── sector-stock-selection-skill.md
-│   │           ├── short-term-entry-patterns.md
-│   │           ├── stop-target-and-exit-skill.md
-│   │           ├── structure-condition-vs-end-signal-skill.md
-│   │           ├── trend-following-entry-skill.md
-│   │           └── wave-degree-and-direction-skill.md
-│   ├── wave-degree-and-direction-skill/
-│   │   └── SKILL.md
-│   ├── structure-condition-vs-end-signal-skill/
-│   │   └── SKILL.md
-│   ├── correction-pattern-dictionary-skill/
-│   │   └── SKILL.md
-│   ├── countertrend-entry-and-trade-point-taxonomy-skill/
-│   │   └── SKILL.md
-│   ├── bull-bear-divide-and-relabeling-skill/
-│   │   └── SKILL.md
-│   ├── trend-following-entry-skill/
-│   │   └── SKILL.md
-│   └── stop-target-and-exit-skill/
-│       └── SKILL.md
-└── evals/                          ← 触发盲测与输出评测材料
-    ├── test-results.md             ← 逐项判卷与复核轮补测记录
-    └── test-prompts.json           ← 9 条固定用例（3 正例 / 3 诱饵 / 3 边界）
+├── README.md              ← 你正在看的
+├── README.en.md           ← English version
+├── LICENSE                ← MIT
+├── BOOK_OVERVIEW.md       ← 阶段 0 产出：全书 Adler 分析
+├── INDEX.md               ← 阶段 3 产出：skill 总览 + 依赖关系
+├── verified.md            ← 通过三重验证的 14 个单元
+├── TEST_SUMMARY.md        ← 阶段 4 产出：压力测试摘要
+├── CANGJIE_ADAPTATION.md  ← 仓颉适配说明
+├── GITHUB_REPO.md         ← 仓库元数据
+├── test-results.md        ← 测试结果记录
+├── candidates/            ← 阶段 1 产出：原始候选池
+│   ├── frameworks.md      ← 框架与方法候选
+│   ├── principles.md      ← 原则 / 规则 / 计算候选
+│   ├── cases.md           ← 书中案例候选
+│   ├── counter-examples.md← 反例与边界候选
+│   └── glossary.md        ← 术语候选
+├── rejected/              ← 阶段 1.5 产出：被淘汰的单元 + 原因
+├── bundle/                ← 编译事实源
+│   ├── verified.yaml      ← 能力元数据、判据与去向
+│   ├── cards/             ← 能力卡源文件（六段结构）
+│   └── book/              ← overview.md + glossary.md
+├── single/                ← single 模式（1 个入口 + 全部能力卡）
+│   └── wave-accurate-timing-skill/SKILL.md  ← 入口：触发 + 路由表 + 加载规则（同目录含 test-prompts.json）
+└── pack/                  ← pack 模式（1 个路由入口 + 7 个晋级 skill）
+    └── */SKILL.md         ← 8 个 skill；router 目录附带 test-prompts.json
 ```
 
 ## 如何使用

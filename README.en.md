@@ -122,11 +122,11 @@ The hard part of distilling this book was keeping "what the author claims" separ
 
 ## Testing and verification
 
-This repository publishes the test material from the generation process alongside the skills: `evals/test-prompts.json` is the fixed case suite, and `evals/test-results.md` holds the item-by-item scoring plus the follow-up round — methods, per-category verdicts, and the cases left untested, not a single line saying "all passed".
+This repository publishes the test material from the generation process alongside the skills: `test-prompts.json` in the entry directories (one under `single/wave-accurate-timing-skill/`, one under `pack/wave-accurate-timing-skill-router/`) is the fixed case suite, and `test-results.md` (repository root) holds the item-by-item scoring plus the follow-up round — methods, per-category verdicts, and the cases left untested, not a single line saying "all passed".
 
 - **Blind-test method**: an independent blind-test agent (not involved in the distillation) received only the skill path and the user request, first had to decide "will it trigger, which card loads", then actually executed the full analysis and wrote it to a file; neighbouring skills (the author's wave-counting skill, a wave-theory skill and a Dow-theory skill) were supplied as confusors
-- **Case count**: `evals/test-prompts.json` holds 9 cases = 3 should-trigger + 3 decoys + 3 edge cases; plus 2 real task-output cases (T7 / T8)
-- **Trigger verdicts** (as recorded in `evals/test-results.md`): should-trigger 3 / 3 fired and executed correctly; decoys 3 / 3 stayed silent (2 of them correctly handed off to neighbouring skills); edge cases 2 / 2 judged reasonably, while the third (T+1 executability) was not tested on its own in that batch and was booked as pending
+- **Case count**: the entry-level `test-prompts.json` holds 9 cases = 3 should-trigger + 3 decoys + 3 edge cases; plus 2 real task-output cases (T7 / T8)
+- **Trigger verdicts** (as recorded in `test-results.md`): should-trigger 3 / 3 fired and executed correctly; decoys 3 / 3 stayed silent (2 of them correctly handed off to neighbouring skills); edge cases 2 / 2 judged reasonably, while the third (T+1 executability) was not tested on its own in that batch and was booked as pending
 - **Output verdicts**: T8 maps step by step onto the card's section E; T7, because the scenario itself lacked the 60-minute correction low, stopped at the stop field instead of guessing a price — the record keeps "where it got stuck", not only "what passed"
 - **Follow-up round** (2026-10-24): edge-03 passed on retest; T7 recomputed after supplying the 60-minute low — stop 16.88, target 18.20 (the assumption is stated), risk-reward about 1.5:1; four neighbouring-skill negative cases went 4 / 4 single-select with no double trigger; the trigger suite retested at 8 / 9, the single disagreement being that "just count the waves" was caught by this skill in an environment where the counting skill was not installed; section-R quotations were checked word by word at 38 / 38
 - **Open items and accounting**: none recorded as outstanding; this repository did not reconcile the counts, did not rewrite any verdict, and derives no pass rate from them
@@ -135,147 +135,31 @@ This repository publishes the test material from the generation process alongsid
 
 ```text
 wave-accurate-timing-skill/
-├── README.md                      ← Chinese version
-├── README.en.md                   ← you are reading this
-├── LICENSE                        ← MIT
-├── BOOK_OVERVIEW.md               ← whole-book comprehension (Adler four-step, stage 0 output)
-├── verified.md                    ← triple-verification conclusions and follow-up review
-├── INDEX.md                       ← skill map: capability table + dependencies + loading order
-├── TEST_SUMMARY.md                ← stage 4 pressure-test summary: case inventory / structure checks / results
-├── CANGJIE_ADAPTATION.md          ← cangjie adaptation note: text status / distillation goals / evidence rules / scope limits
-├── candidates/                    ← stage 1 candidate pool (5 types × 8 chunks + whole-book merge, 45 text files)
-│   ├── cases.md                   ← case type, whole-book merge
-│   ├── cases-chunk01.md
-│   ├── cases-chunk02.md
-│   ├── cases-chunk03.md
-│   ├── cases-chunk04.md
-│   ├── cases-chunk05.md
-│   ├── cases-chunk06.md
-│   ├── cases-chunk07.md
-│   ├── cases-chunk08.md
-│   ├── counter-examples.md        ← counter-example type, whole-book merge
-│   ├── counter-examples-chunk01.md
-│   ├── counter-examples-chunk02.md
-│   ├── counter-examples-chunk03.md
-│   ├── counter-examples-chunk04.md
-│   ├── counter-examples-chunk05.md
-│   ├── counter-examples-chunk06.md
-│   ├── counter-examples-chunk07.md
-│   ├── counter-examples-chunk08.md
-│   ├── frameworks.md              ← framework type, whole-book merge
-│   ├── frameworks-chunk01.md
-│   ├── frameworks-chunk02.md
-│   ├── frameworks-chunk03.md
-│   ├── frameworks-chunk04.md
-│   ├── frameworks-chunk05.md
-│   ├── frameworks-chunk06.md
-│   ├── frameworks-chunk07.md
-│   ├── frameworks-chunk08.md
-│   ├── glossary.md                ← glossary type, whole-book merge
-│   ├── glossary-chunk01.md
-│   ├── glossary-chunk02.md
-│   ├── glossary-chunk03.md
-│   ├── glossary-chunk04.md
-│   ├── glossary-chunk05.md
-│   ├── glossary-chunk06.md
-│   ├── glossary-chunk07.md
-│   ├── glossary-chunk08.md
-│   ├── principles.md              ← principle type, whole-book merge
-│   ├── principles-chunk01.md
-│   ├── principles-chunk02.md
-│   ├── principles-chunk03.md
-│   ├── principles-chunk04.md
-│   ├── principles-chunk05.md
-│   ├── principles-chunk06.md
-│   ├── principles-chunk07.md
-│   └── principles-chunk08.md
-├── bundle/                        ← distillation intermediates (auditable)
-│   ├── verified.yaml              ← full spec of the 14 capability units (single source of truth)
-│   ├── cards/
-│   │   ├── ambiguity-handling-skill.md
-│   │   ├── bull-bear-divide-and-relabeling-skill.md
-│   │   ├── correction-pattern-dictionary-skill.md
-│   │   ├── countertrend-entry-and-trade-point-taxonomy-skill.md
-│   │   ├── forecast-methods-skill.md
-│   │   ├── high-probability-resonance-skill.md
-│   │   ├── multi-timeframe-crosscheck-skill.md
-│   │   ├── position-decides-strategy-skill.md
-│   │   ├── sector-stock-selection-skill.md
-│   │   ├── short-term-entry-patterns-skill.md
-│   │   ├── stop-target-and-exit-skill.md
-│   │   ├── structure-condition-vs-end-signal-skill.md
-│   │   ├── trend-following-entry-skill.md
-│   │   └── wave-degree-and-direction-skill.md
-│   └── book/
-│       ├── overview.md            ← book overview
-│       └── glossary.md            ← glossary
-├── single/                        ← single-entry build
-│   └── wave-accurate-timing-skill/
-│       ├── SKILL.md               ← entry: triggers + router table + loading rules
-│       ├── BUILD_MANIFEST.json    ← build manifest and file hashes
-│       ├── test-prompts.json      ← 9 fixed cases (copy shipped with the skill, same content as evals/)
-│       └── references/
-│           ├── overview.md        ← book overview
-│           ├── capability-index.md  ← full intent and keyword index (all 14 cards)
-│           ├── cheatsheet.md      ← decision-rule quick reference
-│           ├── glossary.md        ← glossary
-│           └── capabilities/      ← the 14 capability cards
-│               ├── ambiguity-handling.md
-│               ├── bull-bear-divide-and-relabeling-skill.md
-│               ├── correction-pattern-dictionary-skill.md
-│               ├── countertrend-entry-and-trade-point-taxonomy-skill.md
-│               ├── forecast-methods.md
-│               ├── high-probability-resonance.md
-│               ├── multi-timeframe-crosscheck.md
-│               ├── position-decides-strategy.md
-│               ├── sector-stock-selection-skill.md
-│               ├── short-term-entry-patterns.md
-│               ├── stop-target-and-exit-skill.md
-│               ├── structure-condition-vs-end-signal-skill.md
-│               ├── trend-following-entry-skill.md
-│               └── wave-degree-and-direction-skill.md
-├── pack/                          ← multi-entry build (compact pack)
-│   ├── BUILD_MANIFEST.json
-│   ├── capability-destinations.json
-│   ├── wave-accurate-timing-skill-router/
-│   │   ├── SKILL.md               ← source router entry
-│   │   └── references/            ← the 14 cards + index, called internally by the router
-│   │       ├── overview.md
-│   │       ├── capability-index.md
-│   │       ├── cheatsheet.md
-│   │       ├── glossary.md
-│   │       └── capabilities/
-│   │           ├── ambiguity-handling.md
-│   │           ├── bull-bear-divide-and-relabeling-skill.md
-│   │           ├── correction-pattern-dictionary-skill.md
-│   │           ├── countertrend-entry-and-trade-point-taxonomy-skill.md
-│   │           ├── forecast-methods.md
-│   │           ├── high-probability-resonance.md
-│   │           ├── multi-timeframe-crosscheck.md
-│   │           ├── position-decides-strategy.md
-│   │           ├── sector-stock-selection-skill.md
-│   │           ├── short-term-entry-patterns.md
-│   │           ├── stop-target-and-exit-skill.md
-│   │           ├── structure-condition-vs-end-signal-skill.md
-│   │           ├── trend-following-entry-skill.md
-│   │           └── wave-degree-and-direction-skill.md
-│   ├── wave-degree-and-direction-skill/
-│   │   └── SKILL.md
-│   ├── structure-condition-vs-end-signal-skill/
-│   │   └── SKILL.md
-│   ├── correction-pattern-dictionary-skill/
-│   │   └── SKILL.md
-│   ├── countertrend-entry-and-trade-point-taxonomy-skill/
-│   │   └── SKILL.md
-│   ├── bull-bear-divide-and-relabeling-skill/
-│   │   └── SKILL.md
-│   ├── trend-following-entry-skill/
-│   │   └── SKILL.md
-│   └── stop-target-and-exit-skill/
-│       └── SKILL.md
-└── evals/                          ← trigger blind tests and output evaluation material
-    ├── test-results.md             ← item-by-item scoring and follow-up round
-    └── test-prompts.json           ← 9 fixed cases (3 trigger / 3 decoy / 3 edge)
+├── README.md              ← Chinese version
+├── README.en.md           ← you are reading this
+├── LICENSE                ← MIT
+├── BOOK_OVERVIEW.md       ← stage 0 output: Adler whole-book analysis
+├── INDEX.md               ← stage 3 output: skill map + dependencies
+├── verified.md            ← 14 units that passed triple verification
+├── TEST_SUMMARY.md        ← stage 4 output: stress-test summary
+├── CANGJIE_ADAPTATION.md  ← cangjie adaptation notes
+├── GITHUB_REPO.md         ← repository metadata
+├── test-results.md        ← test result records
+├── candidates/            ← stage 1 output: raw candidate pool
+│   ├── frameworks.md      ← framework and method candidates
+│   ├── principles.md      ← principle / rule / calculation candidates
+│   ├── cases.md           ← case candidates from the book
+│   ├── counter-examples.md← counter-example and boundary candidates
+│   └── glossary.md        ← terminology candidates
+├── rejected/              ← stage 1.5 output: rejected units + reasons
+├── bundle/                ← compilation source of truth
+│   ├── verified.yaml      ← capability metadata, criteria and destinations
+│   ├── cards/             ← capability card sources (six sections)
+│   └── book/              ← overview.md + glossary.md
+├── single/                ← single-mode build (one entry + all capability cards)
+│   └── wave-accurate-timing-skill/SKILL.md  ← entry: triggers + routing table + loading rules (ships test-prompts.json alongside)
+└── pack/                  ← pack-mode build (one router + 7 promoted skills)
+    └── */SKILL.md         ← 8 skills; the router directory ships test-prompts.json
 ```
 
 ## How to use
