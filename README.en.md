@@ -239,4 +239,5 @@ Every criterion in the book (the tolerance of a "verified close", tranche ratios
 
 ## License
 
-[MIT](https://opensource.org/licenses/MIT)
+[MIT](./LICENSE)
+

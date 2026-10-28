@@ -239,4 +239,5 @@ $dest = "$env:USERPROFILE\.agents\skills"
 
 ## License
 
-[MIT](https://opensource.org/licenses/MIT)
+[MIT](./LICENSE)
+
