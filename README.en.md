@@ -141,6 +141,54 @@ wave-accurate-timing-skill/
 ├── BOOK_OVERVIEW.md               ← whole-book comprehension (Adler four-step, stage 0 output)
 ├── verified.md                    ← triple-verification conclusions and follow-up review
 ├── INDEX.md                       ← skill map: capability table + dependencies + loading order
+├── TEST_SUMMARY.md                ← stage 4 pressure-test summary: case inventory / structure checks / results
+├── CANGJIE_ADAPTATION.md          ← cangjie adaptation note: text status / distillation goals / evidence rules / scope limits
+├── candidates/                    ← stage 1 candidate pool (5 types × 8 chunks + whole-book merge, 45 text files)
+│   ├── cases.md                   ← case type, whole-book merge
+│   ├── cases-chunk01.md
+│   ├── cases-chunk02.md
+│   ├── cases-chunk03.md
+│   ├── cases-chunk04.md
+│   ├── cases-chunk05.md
+│   ├── cases-chunk06.md
+│   ├── cases-chunk07.md
+│   ├── cases-chunk08.md
+│   ├── counter-examples.md        ← counter-example type, whole-book merge
+│   ├── counter-examples-chunk01.md
+│   ├── counter-examples-chunk02.md
+│   ├── counter-examples-chunk03.md
+│   ├── counter-examples-chunk04.md
+│   ├── counter-examples-chunk05.md
+│   ├── counter-examples-chunk06.md
+│   ├── counter-examples-chunk07.md
+│   ├── counter-examples-chunk08.md
+│   ├── frameworks.md              ← framework type, whole-book merge
+│   ├── frameworks-chunk01.md
+│   ├── frameworks-chunk02.md
+│   ├── frameworks-chunk03.md
+│   ├── frameworks-chunk04.md
+│   ├── frameworks-chunk05.md
+│   ├── frameworks-chunk06.md
+│   ├── frameworks-chunk07.md
+│   ├── frameworks-chunk08.md
+│   ├── glossary.md                ← glossary type, whole-book merge
+│   ├── glossary-chunk01.md
+│   ├── glossary-chunk02.md
+│   ├── glossary-chunk03.md
+│   ├── glossary-chunk04.md
+│   ├── glossary-chunk05.md
+│   ├── glossary-chunk06.md
+│   ├── glossary-chunk07.md
+│   ├── glossary-chunk08.md
+│   ├── principles.md              ← principle type, whole-book merge
+│   ├── principles-chunk01.md
+│   ├── principles-chunk02.md
+│   ├── principles-chunk03.md
+│   ├── principles-chunk04.md
+│   ├── principles-chunk05.md
+│   ├── principles-chunk06.md
+│   ├── principles-chunk07.md
+│   └── principles-chunk08.md
 ├── bundle/                        ← distillation intermediates (auditable)
 │   ├── verified.yaml              ← full spec of the 14 capability units (single source of truth)
 │   ├── cards/
@@ -165,6 +213,7 @@ wave-accurate-timing-skill/
 │   └── wave-accurate-timing-skill/
 │       ├── SKILL.md               ← entry: triggers + router table + loading rules
 │       ├── BUILD_MANIFEST.json    ← build manifest and file hashes
+│       ├── test-prompts.json      ← 9 fixed cases (copy shipped with the skill, same content as evals/)
 │       └── references/
 │           ├── overview.md        ← book overview
 │           ├── capability-index.md  ← full intent and keyword index (all 14 cards)

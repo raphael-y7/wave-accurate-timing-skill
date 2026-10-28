@@ -141,6 +141,54 @@ wave-accurate-timing-skill/
 ├── BOOK_OVERVIEW.md               ← 整书理解（Adler 四步拆解，阶段 0 产出）
 ├── verified.md                    ← 三重验证结论与补审记录
 ├── INDEX.md                       ← skill 地图：能力总表 + 依赖关系 + 加载顺序
+├── TEST_SUMMARY.md                ← 阶段 4 压力测试摘要：用例规模 / 结构检查 / 结果
+├── CANGJIE_ADAPTATION.md          ← 仓颉适配说明：文本状态 / 蒸馏目标 / 证据规则 / 使用边界
+├── candidates/                    ← 阶段 1 五路提取候选池（5 类 × 8 块 + 全书级合并，共 45 个文本文件）
+│   ├── cases.md                   ← 案例类全书级合并
+│   ├── cases-chunk01.md
+│   ├── cases-chunk02.md
+│   ├── cases-chunk03.md
+│   ├── cases-chunk04.md
+│   ├── cases-chunk05.md
+│   ├── cases-chunk06.md
+│   ├── cases-chunk07.md
+│   ├── cases-chunk08.md
+│   ├── counter-examples.md        ← 反例类全书级合并
+│   ├── counter-examples-chunk01.md
+│   ├── counter-examples-chunk02.md
+│   ├── counter-examples-chunk03.md
+│   ├── counter-examples-chunk04.md
+│   ├── counter-examples-chunk05.md
+│   ├── counter-examples-chunk06.md
+│   ├── counter-examples-chunk07.md
+│   ├── counter-examples-chunk08.md
+│   ├── frameworks.md              ← 框架类全书级合并
+│   ├── frameworks-chunk01.md
+│   ├── frameworks-chunk02.md
+│   ├── frameworks-chunk03.md
+│   ├── frameworks-chunk04.md
+│   ├── frameworks-chunk05.md
+│   ├── frameworks-chunk06.md
+│   ├── frameworks-chunk07.md
+│   ├── frameworks-chunk08.md
+│   ├── glossary.md                ← 术语类全书级合并
+│   ├── glossary-chunk01.md
+│   ├── glossary-chunk02.md
+│   ├── glossary-chunk03.md
+│   ├── glossary-chunk04.md
+│   ├── glossary-chunk05.md
+│   ├── glossary-chunk06.md
+│   ├── glossary-chunk07.md
+│   ├── glossary-chunk08.md
+│   ├── principles.md              ← 原理类全书级合并
+│   ├── principles-chunk01.md
+│   ├── principles-chunk02.md
+│   ├── principles-chunk03.md
+│   ├── principles-chunk04.md
+│   ├── principles-chunk05.md
+│   ├── principles-chunk06.md
+│   ├── principles-chunk07.md
+│   └── principles-chunk08.md
 ├── bundle/                        ← 蒸馏中间产物（可审计）
 │   ├── verified.yaml              ← 14 个能力单元的完整规格（本仓库的单一事实来源）
 │   ├── cards/
@@ -165,6 +213,7 @@ wave-accurate-timing-skill/
 │   └── wave-accurate-timing-skill/
 │       ├── SKILL.md               ← 入口：触发条件 + 路由表 + 加载规则
 │       ├── BUILD_MANIFEST.json    ← 编译清单与文件哈希
+│       ├── test-prompts.json      ← 9 条固定用例（跟技能走的副本，与 evals/ 同内容）
 │       └── references/
 │           ├── overview.md        ← 整书概览
 │           ├── capability-index.md  ← 完整意图与关键词索引（14 张卡逐条登记）
